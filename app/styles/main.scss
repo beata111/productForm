@@ -1,0 +1,180 @@
+
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+
+
+// variables
+
+$product-label-height: 60px;
+$product-label-margin: 20px;
+$product-number: 5;
+$panel-hight:  $product-number *($product-label-height + $product-label-margin) + 50;
+
+
+body {
+  padding-top: 100px;
+  span{
+    text-shadow: 1px 1px 1px #ffffff;
+  }
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'Heebo', arial, serif;
+
+}
+
+.panel{
+  width: 700px;
+  background: radial-gradient(#ffe0fe 2%, #ffe7fe 15%, rgba(255, 224, 251, 0.77)60%);
+  border: 2px solid #a2afb6;
+  .panel-body{
+    position: relative;
+    height: $panel-hight;
+    .product{
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      height: $product-label-height;
+      padding-top: 10px;
+      margin-bottom: $product-label-margin;
+      border-radius: 5px;
+      background-color: #fff7fe;
+      font-size: 2em;
+      color: #032c2b;
+      &:hover{
+        background-color: #FFFFFF;
+      }
+      &:nth-child(1){
+        top: 30px;
+      }
+      &:nth-child(2){
+        top: 30px + $product-label-height + $product-label-margin;
+      }
+      &:nth-child(3){
+        top: 30px + 2*($product-label-height + $product-label-margin);
+      }
+      &:nth-child(4){
+        top: 30px + 3*($product-label-height + $product-label-margin);
+      }
+      &:nth-child(5){
+        top: 30px + 4*($product-label-height + $product-label-margin);
+      }
+      input{
+        position: absolute;
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        left: 15px;
+        top: 10px;
+        opacity: 0;
+        z-index: 1;
+        &:checked + label::before {
+          background-image: url("http://images.sklepy24.pl/33960463/3358/medium/naklejka-dekoracyjna-sniezka-sn98-swieta-swiateczne-platek-sniegu-zima.jpg");
+          background-size: contain;
+        }
+      }
+      label{
+        padding-left: 100px;
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 38px;
+          height: 38px;
+          margin-right: 10px;
+          left: 15px;
+          position: absolute;
+          background-color: white;
+          box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+        }
+      }
+    }
+  }
+  .panel-footer{
+    height: 80px !important;
+    background-color: #ffffff;
+    padding: 0;
+    &:hover{
+      background-color: #fff7fe;
+    }
+    button {
+      width: 100%;
+      height: 100%;
+      background-color: inherit;
+      border: none;
+      font-size: 2.2em;
+      color: rgb(39, 63, 53);
+      &:focus { outline: none;}
+      &:active{ background-color: white;}
+    }
+  }
+}
+
+
+
+// animations
+
+
+.selected-product {
+  background-color: inherit !important;
+  animation: product-selecting 0.5s ease-in forwards 0.5s;
+}
+@keyframes product-selecting {
+  to {top: $panel-hight/4;}
+}
+.non-selected-product{
+  animation: product-vanishing 0.3s ease-in forwards;
+}
+@keyframes product-vanishing {
+  0% {opacity: 1; height: initial;}
+  100% {opacity: 0; height: 0; visibility: hidden; display: none; transform: rotate(-10deg);}
+}
+
+.panel-submitted{
+  .panel-body{
+    background-color: #e7f2c8 !important;
+    animation: panel-resizing 0.5s ease-in forwards 0.5s;
+    transition: all 0.5s;
+    z-index: 100;
+    label::before{
+      display:none !important;
+    }
+    span {
+      font-size: 2em;
+      color: #9ac33a;
+      transition: all 0.5s;
+    }
+  }
+  .panel-footer{
+    animation: footer-color-change 0.5s ease-in forwards;
+    button:active{
+      background-color: #639431;
+    }
+    span {
+      font-size: 1.2em;
+      color: #f5ffe0;
+    }
+  }
+}
+@keyframes panel-resizing {
+  100% {height: 300px;}
+}
+@keyframes footer-color-change {
+  to {background-color: #639431;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

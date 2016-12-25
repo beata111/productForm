@@ -1,0 +1,18 @@
+<form name="$ctrl.productForm">
+  <div class="panel center-block" ng-class="{'panel-submitted': $ctrl.productBought}">
+    <div class="panel-body">
+      <div class="product" ng-repeat="product in $ctrl.products"
+           ng-class="{'selected-product': $ctrl.checkedProduct === product.name && $ctrl.productBought,
+                      'non-selected-product': $ctrl.checkedProduct !== product.name && $ctrl.productBought}">
+        <input name="product" type="radio" value="{{product.name}}" ng-model="$ctrl.checkedProduct" required/>
+        <label><span>{{product.name}}</span></label>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button type="submit" class="center-block" ng-click="$ctrl.buy()">
+        <span ng-if="!$ctrl.productBought">BUY NOW</span>
+        <span ng-if="$ctrl.productBought">THANK YOU</span>
+      </button>
+    </div>
+  </div>
+</form>
